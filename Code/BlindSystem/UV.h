@@ -10,7 +10,7 @@ class UV {
     public:
         UV(char pinUV);
         int value();
-        char inSunlight();
+        bool inSunlight();
 };
 
 #endif

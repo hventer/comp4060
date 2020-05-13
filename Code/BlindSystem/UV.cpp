@@ -5,13 +5,13 @@ UV::UV(char pinUV) {
     this->pinUV = pinUV;
 }
 
-char UV::inSunlight() {
+bool UV::inSunlight() {
     int valUV = value();
 
-    if(valUV > 5)
-        return 1;
+    if(valUV > 500)
+        return true;
     else
-        return 0;
+        return false;
 }
 
 int UV::value() {

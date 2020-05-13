@@ -5,13 +5,13 @@
 
 class Blinds {
     private:
-        char pinUp;     //pin for sending blinds up
-        char pinDown;   //pin for sending blinds down
-        char pinStop;   //pin for stopping blinds
+        int pinUp;     //pin for sending blinds up
+        int pinStop;   //pin for stopping blinds
+        int pinDown;   //pin for sending blinds down
         char blindsState; //0 stop, 1 down, -1 up
 
     public:
-        Blinds(char pinUp, char pinDown, char pinStop);
+        Blinds(int pinUp, int pinStop, int pinDown);
         void init();
         void lower();
         void raise();

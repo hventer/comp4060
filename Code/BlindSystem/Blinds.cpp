@@ -1,11 +1,11 @@
 #include "Arduino.h"
 #include "Blinds.h"
 
-Blinds::Blinds(char pinUp, char pinDown, char pinStop) {
+Blinds::Blinds(int pinUp, int pinStop, int pinDown) {
     this->pinUp = pinUp;
     this->pinDown = pinDown;
     this->pinStop = pinStop;
-    this->blindsState = 0;
+    blindsState = 0;
 }
 
 void Blinds::init() {
@@ -26,7 +26,8 @@ void Blinds::lower() {
     Serial.println("Blinds are lowering");
     if(blindsState != 1) {
         digitalWrite(pinDown, HIGH);
-        this->blindsState = 1;
+        blindsState = 1;
+        delay(200);
     }
     digitalWrite(pinDown, LOW);
 }
@@ -36,7 +37,8 @@ void Blinds::raise() {
     Serial.println("Blinds are raising");
     if(blindsState != -1) {
         digitalWrite(pinUp, HIGH);
-        this->blindsState = -1;
+        blindsState = -1;
+        delay(200);
     }
     digitalWrite(pinUp, LOW);
 }
@@ -45,8 +47,10 @@ void Blinds::stop() {
     //stop the blinds
     Serial.println("Blinds are stopped");
     if(blindsState != 0) {
+        delay(2000);
         digitalWrite(pinStop, HIGH);
-        this->blindsState = 0;
+        blindsState = 0;
+        delay(200);
     }
     digitalWrite(pinStop, LOW);
 }

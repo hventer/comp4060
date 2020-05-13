@@ -5,13 +5,13 @@
 #include "Blinds.h"
 
 #define TEMP_PIN 2
-#define LED_PIN 8
+//#define LED_PIN 8
 
 dht DHT;
 UV UV0(A0);
-UV UV1(A1);
-UV UV2(A2);
-Blinds blinds(3,4,5);
+//UV UV1(A1);
+//UV UV2(A2);
+Blinds blinds(6,7,8);
 
 void setup() {
   Serial.begin(9600);
@@ -25,21 +25,23 @@ void setup() {
 void loop() {
   awake();
   readUV();
-  readTemp();
+  //readTemp();
   sleep();
 }
 
 void readUV() {
-  //Displays the raw value from the sensor
-  if(UV0.inSunlight()) {
+  //if(!UV1.inSunlight() && !UV2.inSunlight()) {
+  //  blinds.raise();
+  //}
+  if(UV0.value() < 10) {
+    blinds.raise();
+  }
+  else if(UV0.inSunlight()) {
     blinds.lower();
     readUV();
   }
   else {
     blinds.stop();
-  }
-  if(!UV1.inSunlight && !UV2.inSunlight) {
-    blinds.raise();
   }
 }
 
