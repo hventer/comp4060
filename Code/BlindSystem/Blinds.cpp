@@ -46,8 +46,8 @@ void Blinds::raise() {
 void Blinds::stop() {
     //stop the blinds
     Serial.println("Blinds are stopped");
-    if(blindsState != 0) {
-        delay(2000);
+    if(blindsState != 0 && blindsState != -1) {
+        delay(1000);
         digitalWrite(pinStop, HIGH);
         blindsState = 0;
         delay(200);

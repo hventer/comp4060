@@ -8,10 +8,10 @@
 //#define LED_PIN 8
 
 dht DHT;
-UV UV0(A0);
-//UV UV1(A1);
-//UV UV2(A2);
-Blinds blinds(6,7,8);
+UV UV0(A2);
+UV UV1(A0);
+UV UV2(A1);
+Blinds blinds(7,6,5);
 
 void setup() {
   Serial.begin(9600);
@@ -30,11 +30,8 @@ void loop() {
 }
 
 void readUV() {
-  //if(!UV1.inSunlight() && !UV2.inSunlight()) {
-  //  blinds.raise();
-  //}
-  if(UV0.value() < 10) {
-    blinds.raise();
+  if(!UV1.inSunlight() && !UV2.inSunlight()) {
+   blinds.raise();
   }
   else if(UV0.inSunlight()) {
     blinds.lower();

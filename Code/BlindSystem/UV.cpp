@@ -8,7 +8,7 @@ UV::UV(char pinUV) {
 bool UV::inSunlight() {
     int valUV = value();
 
-    if(valUV > 500)
+    if(valUV > 5)
         return true;
     else
         return false;
