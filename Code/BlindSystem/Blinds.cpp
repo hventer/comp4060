@@ -24,7 +24,7 @@ void Blinds::init() {
 
 void Blinds::lower() {
     Serial.println("Blinds are lowering");
-    if(blindsState != 1) {
+    if(blindsState != 1) { //not already lowering
         digitalWrite(pinDown, HIGH);
         blindsState = 1;
         delay(200);
@@ -35,7 +35,7 @@ void Blinds::lower() {
 void Blinds::raise() {
     //raise the blinds
     Serial.println("Blinds are raising");
-    if(blindsState != -1) {
+    if(blindsState != -1) { //not already raising
         digitalWrite(pinUp, HIGH);
         blindsState = -1;
         delay(200);
@@ -46,8 +46,8 @@ void Blinds::raise() {
 void Blinds::stop() {
     //stop the blinds
     Serial.println("Blinds are stopped");
-    if(blindsState != 0 && blindsState != -1) {
-        delay(1000);
+    if(blindsState != 0 && blindsState != -1) { //not already stopped or raising
+        delay(700);
         digitalWrite(pinStop, HIGH);
         blindsState = 0;
         delay(200);

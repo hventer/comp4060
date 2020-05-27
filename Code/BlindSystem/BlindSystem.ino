@@ -5,12 +5,16 @@
 #include "Blinds.h"
 
 #define TEMP_PIN 2
-//#define LED_PIN 8
 
+//Creation of the temperature sensor
 dht DHT;
+
+//Creation of 3 UV Sensor objects
 UV UV0(A2);
 UV UV1(A0);
 UV UV2(A1);
+
+//Create a blinds object and pass the pins
 Blinds blinds(7,6,5);
 
 void setup() {
@@ -34,6 +38,7 @@ void readUV() {
    blinds.raise();
   }
   else if(UV0.inSunlight()) {
+  if(UV0.inSunlight()) {
     blinds.lower();
     readUV();
   }
@@ -62,7 +67,7 @@ void awake() {
   //Turns the LED back on
   Serial.println("~~~~~~~~~ I'm Awake ~~~~~~~~~~");
   digitalWrite(LED_BUILTIN,HIGH);
-  delay(1000);
+  delay(200);
 }
 
 void sleep() {
